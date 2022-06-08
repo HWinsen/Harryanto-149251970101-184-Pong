@@ -9,7 +9,7 @@ public class BallController : MonoBehaviour
 
     private void Awake()
     {
-        speed = new Vector2(6 * (Random.Range(0, 2) * 2 - 1), Random.Range(0, 2) * 2 - 1);
+        speed = new Vector2(5 * (Random.Range(0, 2) * 2 - 1), Random.Range(0, 2) * 2 - 1);
     }
 
     // Start is called before the first frame update
