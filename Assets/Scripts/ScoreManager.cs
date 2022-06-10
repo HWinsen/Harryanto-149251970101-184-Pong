@@ -24,17 +24,6 @@ public class ScoreManager : MonoBehaviour
 
     public void AddLeftScore(int increment)
     {
-        rightScore += increment;
-        ball.ResetBall();
-
-        if (rightScore >= maxScore)
-        {
-            GameOver();
-        }
-    }
-
-    public void Score(int increment)
-    {
         leftScore += increment;
         ball.ResetBall();
 
@@ -46,6 +35,6 @@ public class ScoreManager : MonoBehaviour
 
     public void GameOver()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Main Menu");
     }
 }
