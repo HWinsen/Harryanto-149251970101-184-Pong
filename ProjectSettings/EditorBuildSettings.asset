@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Pong.unity
+    path: Assets/Scenes/Main Menu.unity
+    guid: 08d4d2b553adce844aa7ebbe123db8a1
+  - enabled: 1
+    path: Assets/Scenes/Game.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}

@@ -6,6 +6,7 @@ public class BallController : MonoBehaviour
 {
     [SerializeField] private Vector2 speed;
     private Rigidbody2D rig;
+    public Vector2 resetPosition;
 
     private void Awake()
     {
@@ -23,5 +24,10 @@ public class BallController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void ResetBall()
+    {
+        transform.position = resetPosition;
     }
 }
