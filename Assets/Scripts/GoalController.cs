@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class GoalController : MonoBehaviour
 {
-    public Collider2D ball;
-    public bool isRight;
-    public ScoreManager manager;
+    [SerializeField] private Collider2D ball;
+    [SerializeField] private ScoreManager manager;
+    [SerializeField] private bool isRight;
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -6,7 +6,7 @@ public class BallController : MonoBehaviour
 {
     [SerializeField] private Vector2 speed;
     private Rigidbody2D rig;
-    public Vector2 resetPosition;
+    [SerializeField] private Vector2 resetPosition;
 
     private void Awake()
     {
@@ -20,14 +20,15 @@ public class BallController : MonoBehaviour
         rig.velocity = speed;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void ResetBall()
     {
         transform.position = new Vector3(resetPosition.x, resetPosition.y, 2);
+        
+        rig.velocity = speed;
+    }
+
+    public void ActivatePUSpeedUp(float magnitude)
+    {
+        rig.velocity *= magnitude;
     }
 }

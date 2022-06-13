@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PaddleController : MonoBehaviour
 {
-    public int speed;
-    public KeyCode upKey;
-    public KeyCode downKey;
+    [SerializeField] private int speed;
+    [SerializeField] private KeyCode upKey;
+    [SerializeField] private KeyCode downKey;
 
     private Rigidbody2D rig;
 

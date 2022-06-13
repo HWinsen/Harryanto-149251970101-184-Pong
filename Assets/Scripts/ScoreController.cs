@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class ScoreController : MonoBehaviour
 {
-    public Text skorKiri;
-    public Text skorKanan;
-    public ScoreManager manager;
+    [SerializeField] private Text skorKiri;
+    [SerializeField] private Text skorKanan;
+    [SerializeField] private ScoreManager manager;
 
     private void Update()
     {
