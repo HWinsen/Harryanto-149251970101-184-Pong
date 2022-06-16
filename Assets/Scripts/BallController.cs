@@ -12,6 +12,7 @@ public class BallController : MonoBehaviour
     private void Awake()
     {
         RandomBall();
+        //speed = new Vector2(0, 10);
     }
 
     // Start is called before the first frame update

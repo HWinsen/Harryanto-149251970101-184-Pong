@@ -7,6 +7,8 @@ public class PaddleController : MonoBehaviour
     [SerializeField] private int speed;
     [SerializeField] private KeyCode upKey;
     [SerializeField] private KeyCode downKey;
+    [SerializeField] private GameObject topContainer;
+    [SerializeField] private GameObject bottomContainer;
     private Vector3 defaultScale;
     private Vector3 defaultPosition;
     private int defaultSpeed;
@@ -45,13 +47,23 @@ public class PaddleController : MonoBehaviour
 
     private void MoveObject(Vector2 movement)
     {
-        //Debug.Log("Test: " + movement);
+        Debug.Log("Test: " + movement);
         rig.velocity = movement;
     }
 
     public void ResetPaddle()
     {
         transform.position = defaultPosition;
+    }
+
+    public void SpawnUnderTopContainer()
+    {
+        transform.position = new Vector3 (transform.position.x, topContainer.transform.position.y - topContainer.transform.localScale.y - 1, transform.position.z);
+    }
+
+    public void SpawnAboveBottomContainer()
+    {
+        transform.position = new Vector3(transform.position.x, bottomContainer.transform.position.y + bottomContainer.transform.localScale.y + 1, transform.position.z);
     }
 
     public void ActivatePULongPaddle(float magnitude)
