@@ -7,10 +7,11 @@ public class BallController : MonoBehaviour
     [SerializeField] private Vector2 speed;
     private Rigidbody2D rig;
     [SerializeField] private Vector2 resetPosition;
+    public string lastPaddleHit;
 
     private void Awake()
     {
-        speed = new Vector2(5 * (Random.Range(0, 2) * 2 - 1), Random.Range(0, 2) * 2 - 1);
+        RandomBall();
     }
 
     // Start is called before the first frame update
@@ -20,9 +21,14 @@ public class BallController : MonoBehaviour
         rig.velocity = speed;
     }
 
+    public void RandomBall()
+    {
+        speed = new Vector2(5 * (Random.Range(0, 2) * 2 - 1), Random.Range(0, 2) * 2 - 1);
+    }
+
     public void ResetBall()
     {
-        transform.position = new Vector3(resetPosition.x, resetPosition.y, 2);
+        transform.position = new Vector3(resetPosition.x, resetPosition.y, transform.position.z);
         
         rig.velocity = speed;
     }
@@ -30,5 +36,17 @@ public class BallController : MonoBehaviour
     public void ActivatePUSpeedUp(float magnitude)
     {
         rig.velocity *= magnitude;
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "PaddleKanan")
+        {
+            lastPaddleHit = "PaddleKanan";
+        }
+        else if (collision.gameObject.name == "PaddleKiri")
+        {
+            lastPaddleHit = "PaddleKiri";
+        }
     }
 }

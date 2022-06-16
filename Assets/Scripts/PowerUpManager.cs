@@ -5,26 +5,41 @@ using UnityEngine;
 public class PowerUpManager : MonoBehaviour
 {
     private Transform spawnArea;
+    [SerializeField] private PaddleController leftPaddle;
+    [SerializeField] private PaddleController rightPaddle;
     [SerializeField] private int maxPowerUpAmount;
     [SerializeField] private int spawnInterval;
     [SerializeField] private int removeInterval;
+    [SerializeField] private int longPaddleInterval;
+    [SerializeField] private int fastPaddleInterval;
     [SerializeField] private Vector2 powerUpAreaMin;
     [SerializeField] private Vector2 powerUpAreaMax;
 
     private List<GameObject> powerUpList;
     [SerializeField] private List<GameObject> powerUpTemplateList;
 
+    private bool leftLongPaddleState = false;
+    private bool rightLongPaddleState = false;
+    private bool leftFastPaddleState = false;
+    private bool rightFastPaddleState = false;
+
     private float spawnTimer;
+    private float leftLongPaddleTimer;
+    private float rightLongPaddleTimer;
+    private float leftFastPaddleTimer;
+    private float rightFastPaddleTimer;
     private float removeTimer;
 
-    // Start is called before the first frame update
     void Start()
     {
         powerUpList = new List<GameObject>();
         spawnTimer = 0;
+        leftLongPaddleTimer = 0;
+        rightLongPaddleTimer = 0;
+        leftFastPaddleTimer = 0;
+        rightFastPaddleTimer = 0;
     }
 
-    // Update is called once per frame
     void Update()
     {
         spawnTimer += Time.deltaTime;
@@ -35,13 +50,66 @@ public class PowerUpManager : MonoBehaviour
             spawnTimer -= spawnInterval;
         }
 
-        if(powerUpList.Count > 0) {
+        if (powerUpList.Count > 0)
+        {
             removeTimer += Time.deltaTime;
 
             if (removeTimer > removeInterval)
             {
                 RemovePowerUp(powerUpList[0]);
                 removeTimer -= removeInterval;
+            }
+        }
+
+        if (leftLongPaddleState)
+        {
+            leftLongPaddleTimer += Time.deltaTime;
+            //Debug.Log("leftLongPaddleTimer = " + leftLongPaddleTimer);
+
+            if (leftLongPaddleTimer > longPaddleInterval)
+            {
+                leftPaddle.GetComponent<PaddleController>().DeactivatePULongPaddle();
+                leftLongPaddleTimer -= longPaddleInterval;
+                leftLongPaddleState = false;
+            }
+        }
+
+        if (rightLongPaddleState)
+        {
+            rightLongPaddleTimer += Time.deltaTime;
+            //Debug.Log("rightLongPaddleTimer = " + rightLongPaddleTimer);
+
+            if (rightLongPaddleTimer > longPaddleInterval)
+            {
+                rightPaddle.GetComponent<PaddleController>().DeactivatePULongPaddle();
+                rightLongPaddleTimer -= longPaddleInterval;
+                rightLongPaddleState = false;
+            }
+        }
+
+        if (leftFastPaddleState)
+        {
+            leftFastPaddleTimer += Time.deltaTime;
+            //Debug.Log("leftFastPaddleTimer = " + leftFastPaddleTimer);
+
+            if (leftFastPaddleTimer > fastPaddleInterval)
+            {
+                leftPaddle.GetComponent<PaddleController>().DeactivatePUFastPaddle();
+                leftFastPaddleTimer -= fastPaddleInterval;
+                leftFastPaddleState = false;
+            }
+        }
+
+        if (rightFastPaddleState)
+        {
+            rightFastPaddleTimer += Time.deltaTime;
+            //Debug.Log("rightFastPaddleTimer = " + rightFastPaddleTimer);
+
+            if (rightFastPaddleTimer > fastPaddleInterval)
+            {
+                rightPaddle.GetComponent<PaddleController>().DeactivatePUFastPaddle();
+                rightFastPaddleTimer -= fastPaddleInterval;
+                rightFastPaddleState = false;
             }
         }
     }
@@ -91,5 +159,48 @@ public class PowerUpManager : MonoBehaviour
     {
         spawnTimer = 0;
         removeTimer = 0;
+        leftLongPaddleTimer = 0;
+        rightLongPaddleTimer = 0;
+        leftFastPaddleTimer = 0;
+        rightFastPaddleTimer = 0;
+    }
+
+    public void ResetPUState()
+    {
+        leftLongPaddleState = false;
+        rightLongPaddleState = false;
+        leftPaddle.GetComponent<PaddleController>().DeactivatePULongPaddle();
+        rightPaddle.GetComponent<PaddleController>().DeactivatePULongPaddle();
+        
+        leftFastPaddleState = false;
+        rightFastPaddleState = false;
+        leftPaddle.GetComponent<PaddleController>().DeactivatePUFastPaddle();
+        rightPaddle.GetComponent<PaddleController>().DeactivatePUFastPaddle();
+    }
+
+    public void UpdateLongPaddleState(string lastPaddleHit)
+    {
+        
+        if (lastPaddleHit == "PaddleKiri")
+        {
+            leftLongPaddleState = true;
+        }
+        else
+        {
+            rightLongPaddleState = true;
+        }
+    }
+
+    public void UpdateFastPaddleState(string lastPaddleHit)
+    {
+
+        if (lastPaddleHit == "PaddleKiri")
+        {
+            leftFastPaddleState = true;
+        }
+        else
+        {
+            rightFastPaddleState = true;
+        }
     }
 }

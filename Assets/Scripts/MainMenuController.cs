@@ -14,4 +14,14 @@ public class MainMenuController : MonoBehaviour
     {
         Debug.Log("Created by Harryanto - 149251970101-184");
     }
+
+    public void OpenCredit()
+    {
+        SceneManager.LoadScene("Credit");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }

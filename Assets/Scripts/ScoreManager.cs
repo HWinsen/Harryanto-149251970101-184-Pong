@@ -11,12 +11,18 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private int maxScore;
     [SerializeField] private BallController ball;
     [SerializeField] private PowerUpManager powerUpManager;
+    [SerializeField] private PaddleController leftPaddle;
+    [SerializeField] private PaddleController rightPaddle;
 
     public void AddRightScore(int increment)
     {
         rightScore += increment;
         ball.ResetBall();
+        ball.RandomBall();
+        leftPaddle.ResetPaddle();
+        rightPaddle.ResetPaddle();
         powerUpManager.RemoveAllPowerUp();
+        powerUpManager.ResetPUState();
         powerUpManager.ResetTimer();
 
         if (rightScore >= maxScore)
@@ -29,7 +35,11 @@ public class ScoreManager : MonoBehaviour
     {
         leftScore += increment;
         ball.ResetBall();
+        ball.RandomBall();
+        leftPaddle.ResetPaddle();
+        rightPaddle.ResetPaddle();
         powerUpManager.RemoveAllPowerUp();
+        powerUpManager.ResetPUState();
         powerUpManager.ResetTimer();
 
         if (leftScore >= maxScore)
