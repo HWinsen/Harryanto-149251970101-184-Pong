@@ -64,9 +64,8 @@ public class PowerUpManager : MonoBehaviour
         if (leftLongPaddleState)
         {
             leftLongPaddleTimer += Time.deltaTime;
-            //Debug.Log("leftLongPaddleTimer = " + leftLongPaddleTimer);
 
-            if (leftLongPaddleTimer > longPaddleInterval)
+            if (leftLongPaddleTimer >= longPaddleInterval)
             {
                 leftPaddle.GetComponent<PaddleController>().DeactivatePULongPaddle();
                 leftLongPaddleTimer -= longPaddleInterval;
@@ -77,9 +76,8 @@ public class PowerUpManager : MonoBehaviour
         if (rightLongPaddleState)
         {
             rightLongPaddleTimer += Time.deltaTime;
-            //Debug.Log("rightLongPaddleTimer = " + rightLongPaddleTimer);
 
-            if (rightLongPaddleTimer > longPaddleInterval)
+            if (rightLongPaddleTimer >= longPaddleInterval)
             {
                 rightPaddle.GetComponent<PaddleController>().DeactivatePULongPaddle();
                 rightLongPaddleTimer -= longPaddleInterval;
@@ -90,9 +88,8 @@ public class PowerUpManager : MonoBehaviour
         if (leftFastPaddleState)
         {
             leftFastPaddleTimer += Time.deltaTime;
-            //Debug.Log("leftFastPaddleTimer = " + leftFastPaddleTimer);
 
-            if (leftFastPaddleTimer > fastPaddleInterval)
+            if (leftFastPaddleTimer >= fastPaddleInterval)
             {
                 leftPaddle.GetComponent<PaddleController>().DeactivatePUFastPaddle();
                 leftFastPaddleTimer -= fastPaddleInterval;
@@ -103,9 +100,8 @@ public class PowerUpManager : MonoBehaviour
         if (rightFastPaddleState)
         {
             rightFastPaddleTimer += Time.deltaTime;
-            //Debug.Log("rightFastPaddleTimer = " + rightFastPaddleTimer);
 
-            if (rightFastPaddleTimer > fastPaddleInterval)
+            if (rightFastPaddleTimer >= fastPaddleInterval)
             {
                 rightPaddle.GetComponent<PaddleController>().DeactivatePUFastPaddle();
                 rightFastPaddleTimer -= fastPaddleInterval;

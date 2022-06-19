@@ -17,13 +17,7 @@ public class ScoreManager : MonoBehaviour
     public void AddRightScore(int increment)
     {
         rightScore += increment;
-        ball.ResetBall();
-        ball.RandomBall();
-        leftPaddle.ResetPaddle();
-        rightPaddle.ResetPaddle();
-        powerUpManager.RemoveAllPowerUp();
-        powerUpManager.ResetPUState();
-        powerUpManager.ResetTimer();
+        ResetGame();
 
         if (rightScore >= maxScore)
         {
@@ -34,13 +28,7 @@ public class ScoreManager : MonoBehaviour
     public void AddLeftScore(int increment)
     {
         leftScore += increment;
-        ball.ResetBall();
-        ball.RandomBall();
-        leftPaddle.ResetPaddle();
-        rightPaddle.ResetPaddle();
-        powerUpManager.RemoveAllPowerUp();
-        powerUpManager.ResetPUState();
-        powerUpManager.ResetTimer();
+        ResetGame();
 
         if (leftScore >= maxScore)
         {
@@ -51,5 +39,16 @@ public class ScoreManager : MonoBehaviour
     public void GameOver()
     {
         SceneManager.LoadScene("Main Menu");
+    }
+
+    public void ResetGame()
+    {
+        ball.ResetBall();
+        ball.RandomBall();
+        leftPaddle.ResetPaddle();
+        rightPaddle.ResetPaddle();
+        powerUpManager.RemoveAllPowerUp();
+        powerUpManager.ResetPUState();
+        powerUpManager.ResetTimer();
     }
 }

@@ -15,7 +15,6 @@ public class PaddleController : MonoBehaviour
 
     private Rigidbody2D rig;
 
-    // Start is called before the first frame update
     private void Start()
     {
         rig = GetComponent<Rigidbody2D>();
@@ -24,7 +23,6 @@ public class PaddleController : MonoBehaviour
         defaultSpeed = speed;
     }
 
-    // Update is called once per frame
     private void Update()
     {
         MoveObject(GetInput());

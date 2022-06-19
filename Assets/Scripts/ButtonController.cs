@@ -5,10 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ButtonController : MonoBehaviour
 {
-    [SerializeField] private BallController ball;
-    [SerializeField] private PowerUpManager powerUpManager;
-    [SerializeField] private PaddleController leftPaddle;
-    [SerializeField] private PaddleController rightPaddle;
+    [SerializeField] private ScoreManager scoreManager;
 
     public void BackToMainMenu()
     {
@@ -20,12 +17,6 @@ public class ButtonController : MonoBehaviour
     public void ResetButton()
     {
         Debug.Log("Reset");
-        ball.ResetBall();
-        ball.RandomBall();
-        leftPaddle.ResetPaddle();
-        rightPaddle.ResetPaddle();
-        powerUpManager.RemoveAllPowerUp();
-        powerUpManager.ResetPUState();
-        powerUpManager.ResetTimer();
+        scoreManager.ResetGame();
     }
 }

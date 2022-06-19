@@ -12,7 +12,6 @@ public class BallController : MonoBehaviour
     private void Awake()
     {
         RandomBall();
-        //speed = new Vector2(0, 10);
     }
 
     // Start is called before the first frame update
@@ -24,7 +23,7 @@ public class BallController : MonoBehaviour
 
     public void RandomBall()
     {
-        speed = new Vector2(5 * (Random.Range(0, 2) * 2 - 1), Random.Range(0, 2) * 2 - 1);
+        speed = new Vector2(5 * (Random.Range(0, 2) * 2 - 1), Random.Range(-2, 3));
     }
 
     public void ResetBall()
@@ -41,11 +40,11 @@ public class BallController : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.name == "PaddleKanan")
+        if (collision.gameObject.tag == "PaddleKanan")
         {
             lastPaddleHit = "PaddleKanan";
         }
-        else if (collision.gameObject.name == "PaddleKiri")
+        else if (collision.gameObject.tag == "PaddleKiri")
         {
             lastPaddleHit = "PaddleKiri";
         }
